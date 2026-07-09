@@ -1,0 +1,16 @@
+import Sidebar from "../components/Sidebar"
+import { Outlet } from "react-router-dom"
+
+const Home = () => {
+  return (
+    <div className="w-full min-h-screen bg-(--off-white)">
+      <Sidebar />
+
+      <main className="md:ml-64 flex flex-col h-screen min-w-0 bg-black">
+        <Outlet/>
+      </main>
+    </div>
+  )
+}
+
+export default Home
