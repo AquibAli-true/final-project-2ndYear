@@ -14,7 +14,7 @@ const WeightTrend = ({ currentDate }) => {
             setLoading(true);
             setError(null);
 
-            const response = await fetch('http://localhost:3333/dashboard/weight-history', {
+            const response = await fetch('https://final-project-2ndyear.onrender.com/dashboard/weight-history', {
                 credentials: 'include',
             });
 
@@ -45,7 +45,7 @@ const WeightTrend = ({ currentDate }) => {
 
         setIsSaving(true);
         try {
-            const response = await fetch('http://localhost:3333/dashboard/weight', {
+            const response = await fetch('https://final-project-2ndyear.onrender.com/dashboard/weight', {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',

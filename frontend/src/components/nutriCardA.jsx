@@ -17,7 +17,7 @@ const NutritionCardA = () => {
 
         <div className="flex-1 w-full max-w-md lg:max-w-xl">
           <img 
-            src="" 
+            src="https://media.post.rvohealth.io/wp-content/uploads/sites/5/2024/02/Bezzy-salmon-dinner-1520x855-header.jpg" 
             alt="Nutrition chart and meal preview" 
             className="w-full h-auto object-contain rounded-2xl"
           />

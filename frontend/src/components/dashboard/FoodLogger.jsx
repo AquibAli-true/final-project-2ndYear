@@ -47,7 +47,7 @@ const FoodLogger = ({ currentDate, onFoodLogged, loggedFoods, setSelectedFood })
 
     const logFoodItem = async (foodData) => {
         try {
-            const response = await fetch('http://localhost:3333/dashboard/food', {
+            const response = await fetch('https://final-project-2ndyear.onrender.com/dashboard/food', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',

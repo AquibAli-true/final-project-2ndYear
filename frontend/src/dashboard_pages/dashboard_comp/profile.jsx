@@ -18,7 +18,7 @@ export default function Profile() {
 
     const handleProfile = async () => {
       
-        const response = await fetch("http://localhost:3333/user-data", {
+        const response = await fetch("https://final-project-2ndyear.onrender.com/user-data", {
           method: "GET",
           credentials: "include",
           headers: { "Content-Type": "application/json" }
@@ -47,7 +47,7 @@ export default function Profile() {
 
   const handleUpdate = async () => {
     try {
-      const response = await fetch("http://localhost:3333/update-profile", {
+      const response = await fetch("https://final-project-2ndyear.onrender.com/update-profile", {
         method: "PATCH",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
@@ -76,7 +76,7 @@ export default function Profile() {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch('http://localhost:3333/log-out', { method: 'POST', credentials: 'include' });
+      const response = await fetch('https://final-project-2ndyear.onrender.com/log-out', { method: 'POST', credentials: 'include' });
       if (response.ok) navigate('/');
     } catch (error) {
       console.error('Logout error:', error);

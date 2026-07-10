@@ -22,7 +22,7 @@ const Dashboard = () => {
                 setLoading(true);
                 setError(null);
                 
-                const response = await fetch(`http://localhost:3333/dashboard?date=${currentDate}`, {
+                const response = await fetch(`https://final-project-2ndyear.onrender.com/dashboard?date=${currentDate}`, {
                     method: 'GET',
                     credentials: 'include', 
                 });
@@ -60,7 +60,7 @@ const Dashboard = () => {
         e.preventDefault();
         setIsSavingTargets(true);
         try {
-            const response = await fetch('http://localhost:3333/dashboard/targets', {
+            const response = await fetch('https://final-project-2ndyear.onrender.com/dashboard/targets', {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',
@@ -89,7 +89,7 @@ const Dashboard = () => {
     
 const handleFoodLogged = async () => {
     try {
-        const response = await fetch(`http://localhost:3333/dashboard?date=${currentDate}`, {
+        const response = await fetch(`https://final-project-2ndyear.onrender.com/dashboard?date=${currentDate}`, {
             credentials: 'include',
         });
         if (response.ok) {

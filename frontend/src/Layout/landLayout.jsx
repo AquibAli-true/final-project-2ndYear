@@ -11,7 +11,7 @@ const LandLayout = () => {
     console.log("checking auth");
     const checkAuth = async () => {
       try {
-        const response = await fetch('http://localhost:3333/verify', {
+        const response = await fetch('https://final-project-2ndyear.onrender.com/verify', {
           method: 'GET',
           credentials: 'include' 
         });

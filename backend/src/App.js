@@ -10,7 +10,7 @@ const dashboardRouter=require('./dashboard/dashboard.js')
 app.use(express.json());
 app.use(cookieParser());
 const corsOptions = {
-    origin: 'http://localhost:5173' ,
+    origin: ['http://localhost:5173', 'https://final-project-2nd-year-1ro9.vercel.app'],
     credentials: true
 };
 app.use(cors(corsOptions));

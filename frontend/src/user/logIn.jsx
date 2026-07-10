@@ -10,7 +10,7 @@ const LogIn = () => {
   }=useForm();
   const onSubmit=async (data)=>{
     try{
-      const response = await fetch('http://localhost:3333/log-in', {
+      const response = await fetch('https://final-project-2ndyear.onrender.com/log-in', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

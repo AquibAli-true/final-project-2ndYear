@@ -13,7 +13,7 @@ const SignUp = () => {
   const onSubmit=async (data)=>{
     
     try{
-      const response = await fetch('http://localhost:3333/sign-up', {
+      const response = await fetch('https://final-project-2ndyear.onrender.com/sign-up', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -14,7 +14,7 @@ const NutritionCardB = () => {
 
         <div className="flex-1 w-full max-w-md lg:max-w-xl">
           <img 
-            src="" 
+            src="https://paleoleap.com/wp-content/uploads/2018/02/Goal-Weight.jpg" 
             alt="Nutrition chart and meal preview" 
             className="w-full h-auto object-contain rounded-2xl"
           />

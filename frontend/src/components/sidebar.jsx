@@ -7,7 +7,7 @@ export default function Sidebar() {
   const navigate = useNavigate();
   const logOut = async () => {
     try {
-      const response = await fetch('http://localhost:3333/log-out', {
+      const response = await fetch('https://final-project-2ndyear.onrender.com/log-out', {
         method: 'POST',
         credentials: 'include'
       });

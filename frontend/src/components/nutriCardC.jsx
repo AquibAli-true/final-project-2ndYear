@@ -14,7 +14,7 @@ const NutritionCardC = () => {
 
         <div className="flex-1 w-full max-w-md lg:max-w-xl">
           <img 
-            src="" 
+            src="https://media.post.rvohealth.io/wp-content/uploads/2022/01/1891906-CLONE-A-Dietitians-Picks-of-the-10-Best-Nutrition-Apps-to-Download-in-2022-732x549-feature-732x549.jpg" 
             alt="Nutrition chart and meal preview" 
             className="w-full h-auto object-contain rounded-2xl"
           />
