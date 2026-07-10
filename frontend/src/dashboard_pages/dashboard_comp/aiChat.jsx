@@ -22,7 +22,7 @@ export default function AiChat() {
 
     try {
       const response = await ai.models.generateContent({
-        model: 'gemini-2.5-flash-lite',
+        model: 'gemini-3-flash-preview',
         contents: userText,
         config: {
           systemInstruction: "You are a professional health, fitness, and nutrition coach for an app called Diet+. You must ONLY answer questions related to diet, working out, meals, and healthy lifestyle choices. If the user asks about unrelated topics, politely decline and redirect them to health.",
