@@ -1,33 +1,56 @@
 import { useState } from 'react';
+import { GoogleGenAI } from '@google/genai';
+
+const ai = new GoogleGenAI({ apiKey: "AQ.Ab8RN6LgKh1TuoNlgZgVK1hZ7H_Rv83DlSsdDL8PuGY_P9hBjw" });
 
 export default function AiChat() {
   const [messages, setMessages] = useState([
-    { id: 1, text: "Hello! How can I help you today?", isBot: true }
+    { id: 1, text: "Hello! I am your Diet+ AI assistant. How can I help you today?", isBot: true }
   ]);
   const [input, setInput] = useState('');
+  
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSend = (e) => {
+  const handleSend = async (e) => {
     e.preventDefault();
-    if (!input.trim()) return;
-
-    const userMessage = { id: Date.now(), text: input, isBot: false };
+    if (!input.trim() || isLoading) return;
+    const userText = input;
+    const userMessage = { id: Date.now(), text: userText, isBot: false };
     setMessages((prev) => [...prev, userMessage]);
     setInput('');
+    setIsLoading(true);
 
-    setTimeout(() => {
+    try {
+      const response = await ai.models.generateContent({
+        model: 'gemini-2.5-flash',
+        contents: userText,
+        config: {
+          systemInstruction: "You are a professional health, fitness, and nutrition coach for an app called Diet+. You must ONLY answer questions related to diet, working out, meals, and healthy lifestyle choices. If the user asks about unrelated topics, politely decline and redirect them to health.",
+        }
+      });
+
+
       const botMessage = {
         id: Date.now() + 1,
-        text: `This is a simulated AI response to: "${input}"`,
+        text: response.text || "Sorry, I couldn't generate a response.",
         isBot: true
       };
       setMessages((prev) => [...prev, botMessage]);
-    }, 1000);
+
+    } catch (error) {
+      console.error("Gemini API Error:", error);
+      setMessages((prev) => [...prev, { id: Date.now() + 1, text: "Error connecting to AI. Please check your API key.", isBot: true }]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className="flex flex-col w-full h-full bg-(--off-white)">
       <div className="px-6 py-4 border-b border-gray-200 font-medium text-gray-700 bg-gray-50">
+        Diet+ AI
       </div>
+      
       <div className="flex-1 overflow-y-auto px-6 py-8 md:px-12 lg:px-24 space-y-6">
         {messages.map((msg) => (
           <div
@@ -35,9 +58,9 @@ export default function AiChat() {
             className={`flex ${msg.isBot ? 'justify-start' : 'justify-end'}`}
           >
             <div
-              className={`max-w-[85%] md:max-w-[75%] rounded-2xl px-5 py-3 text-sm leading-relaxed ${
+              className={`max-w-[85%] md:max-w-[75%] font-lato rounded-2xl px-5 py-3 text-sm leading-relaxed ${
                 msg.isBot
-                  ? 'bg-gray-100 text-gray-800'
+                  ? 'bg-(--global-dark-theme)/10 text-gray-800'
                   : 'bg-blue-600 text-white'
               }`}
             >
@@ -45,6 +68,14 @@ export default function AiChat() {
             </div>
           </div>
         ))}
+
+        {isLoading && (
+           <div className="flex justify-start">
+             <div className="bg-gray-100 text-gray-500 rounded-2xl px-5 py-3 text-sm italic animate-pulse">
+               Thinking...
+             </div>
+           </div>
+        )}
       </div>
 
       <div className="border-t border-gray-200 bg-white px-6 py-4 md:px-12 lg:px-24 pb-6">
@@ -53,12 +84,14 @@ export default function AiChat() {
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Type a message..."
-            className="w-full pl-5 pr-12 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm shadow-sm"
+            disabled={isLoading}
+            placeholder={isLoading ? "Waiting for AI..." : "Type a message..."}
+            className="w-full pl-5 pr-12 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm shadow-sm disabled:opacity-50"
           />
           <button
             type="submit"
-            className="absolute right-2 p-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors flex items-center justify-center"
+            disabled={isLoading || !input.trim()}
+            className="absolute right-2 p-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white rounded-lg transition-colors flex items-center justify-center"
             aria-label="Send message"
           >
             <svg

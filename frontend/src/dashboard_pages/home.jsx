@@ -6,7 +6,7 @@ const Home = () => {
     <div className="w-full min-h-screen bg-(--off-white)">
       <Sidebar />
 
-      <main className="md:ml-64 flex flex-col h-screen min-w-0 bg-black">
+      <main className="md:ml-64 flex flex-col h-screen min-w-0 bg-(--off-white)">
         <Outlet/>
       </main>
     </div>
