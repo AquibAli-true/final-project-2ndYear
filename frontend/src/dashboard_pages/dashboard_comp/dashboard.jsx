@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import DailyOverview from '../../components/dashboard/DailyOverview';
+import DailyOverview from '../../components/dashboard/dailyOverview';
 import FoodLogger from '../../components/dashboard/FoodLogger'; 
 import WeightTrend from '../../components/dashboard/WeightTrend';
 
