@@ -15,7 +15,12 @@ router.post('/sign-up', async (req, res) => {
             height: req.body.height,
             token: token
         })
-        res.cookie('user_session', token, { maxAge: 7*24 * 60 * 60 * 1000, httpOnly: true });
+        res.cookie('user_session', token, { 
+    maxAge: 7*24 * 60 * 60 * 1000, 
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none'
+});
         res.status(201).json({ message: 'User created', user: { id: newUser._id, name: newUser.name } });
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -36,7 +41,12 @@ router.post('/sign-up', async (req, res) => {
         const token = 'token_' + Math.random().toString(36).substring(2) + Date.now();
         user.token = token;
         await user.save();
-        res.cookie('user_session', token, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOnly: true });
+        res.cookie('user_session', token, { 
+    maxAge: 7*24 * 60 * 60 * 1000, 
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none'
+});
         res.status(200).json({ message: 'Login successful', user: { id: user._id, name: user.name } });
 
     } catch (error) {
@@ -68,7 +78,7 @@ router.post('/sign-up', async (req, res) => {
         }
         user.token = null;
         await user.save();
-        res.clearCookie('user_session');
+        res.clearCookie('user_session', { secure: true, sameSite: 'none' });
         res.status(200).json({ message: 'Logged out successfully' });
     } catch (error) {
         res.status(500).json({ message: error.message });
