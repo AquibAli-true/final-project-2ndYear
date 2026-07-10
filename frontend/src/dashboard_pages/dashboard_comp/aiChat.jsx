@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { GoogleGenAI } from '@google/genai';
 
-const ai = new GoogleGenAI({ apiKey: "AQ.Ab8RN6LgKh1TuoNlgZgVK1hZ7H_Rv83DlSsdDL8PuGY_P9hBjw" });
+const ai = new GoogleGenAI({ apiKey: "AQ.Ab8RN6JhEEznx-etpTtIEWqHZpNUyzZVUBigekpozac0pFL3rw" });
 
 export default function AiChat() {
   const [messages, setMessages] = useState([
